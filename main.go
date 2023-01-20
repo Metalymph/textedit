@@ -3,16 +3,17 @@ package main
 import (
 	"fmt"
 	"os"
+	fp "github.com/Metalymph/textedit/fileparser"
 )
 
 func main() {
 	//number of arguments control
 	argsLen := len(os.Args)
 	if argsLen != 3 {
-		exitWithError(fmt.Sprintf("Wrong number of arguments. 2 wanted, %d given", argsLen))
+		fp.ExitWithError(fmt.Sprintf("Wrong number of arguments. 2 wanted, %d given", argsLen))
 	}
 
-	if err := NewFileParser(os.Args[1], os.Args[1]).parse(); err != nil {
-		exitWithError(err.Error())
+	if err := fp.NewFileParser(os.Args[1], os.Args[1]).Parse(); err != nil {
+		fp.ExitWithError(err.Error())
 	}
 }
