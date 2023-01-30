@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"os"
 	fp "github.com/Metalymph/textedit/fileparser"
 )
@@ -10,10 +10,10 @@ func main() {
 	//number of arguments control
 	argsLen := len(os.Args)
 	if argsLen != 3 {
-		fp.ExitWithError(fmt.Sprintf("Wrong number of arguments. 2 wanted, %d given", argsLen))
+		log.Fatalf("Wrong number of arguments. 2 wanted, %d given", argsLen-1)
 	}
 
 	if err := fp.NewFileParser(os.Args[1], os.Args[1]).Parse(); err != nil {
-		fp.ExitWithError(err.Error())
+		log.Fatal(err.Error())
 	}
 }
